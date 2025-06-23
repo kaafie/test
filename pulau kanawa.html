@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pulau Kanawa - Permata di Dekat Labuan Bajo</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    header {
+      background-color: #0288d1;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    .content {
+      max-width: 900px;
+      margin: 2rem auto;
+      background-color: white;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .content img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+    h2 {
+      color: #0288d1;
+    }
+    #map {
+      height: 400px;
+      margin-top: 2rem;
+      border-radius: 10px;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #e0e0e0;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Pulau Kanawa</h1>
+    <p>Permata Tersembunyi di Dekat Labuan Bajo</p>
+  </header>
+
+  <div class="content">
+    <h2>Tentang Pulau Kanawa</h2>
+    <img src="kanawa.jpg" alt="Pulau Kanawa">
+    <p><strong>Pulau Kanawa</strong> adalah sebuah pulau kecil yang terletak tidak jauh dari Labuan Bajo, Nusa Tenggara Timur. Pulau ini dikenal dengan pasir putihnya yang bersih, laut biru jernih, dan kehidupan bawah laut yang sangat kaya. Cocok untuk kegiatan snorkeling, diving, atau sekadar menikmati ketenangan alam.</p>
+    <p>Pulau Kanawa juga menjadi pintu masuk ke Taman Nasional Komodo, membuatnya ideal sebagai titik awal menjelajahi keindahan Flores dan sekitarnya.</p>
+
+    <div id="map"></div>
+  </div>
+
+  <footer>
+    &copy; 2025 Jelajah Nusantara | Pulau Kanawa - Keindahan Laut Flores
+  </footer>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([-8.5167, 119.7333], 13); // Koordinat Pulau Kanawa
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.marker([-8.5167, 119.7333]).addTo(map)
+      .bindPopup("<b>Pulau Kanawa</b><br>Pulau eksotis dekat Labuan Bajo, NTT.")
+      .openPopup();
+  </script>
+
+</body>
+</html>

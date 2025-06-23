@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Danau Labuan Cermin - Keajaiban Dua Rasa</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f7f7f7;
+      color: #333;
+    }
+    header {
+      background-color: #00796b;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    .content {
+      max-width: 900px;
+      margin: 2rem auto;
+      background-color: white;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .content img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+    h2 {
+      color: #00796b;
+    }
+    #map {
+      height: 400px;
+      margin-top: 2rem;
+      border-radius: 10px;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #e0e0e0;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Danau Labuan Cermin</h1>
+    <p>Keajaiban Dua Rasa di Kalimantan Timur</p>
+  </header>
+
+  <div class="content">
+    <h2>Tentang Danau Labuan Cermin</h2>
+    <img src="labuan cermin.jpg" alt="Danau Labuan Cermin">
+    <p><strong>Danau Labuan Cermin</strong> terletak di Biduk-Biduk, Kabupaten Berau, Kalimantan Timur. Danau ini terkenal karena airnya yang sangat jernih dan memiliki dua lapisan rasa: tawar di permukaan dan asin di bagian bawah.</p>
+    <p>Fenomena ini terjadi karena pertemuan air laut dan air tanah yang tidak bercampur secara sempurna. Pengunjung dapat berenang, menyelam ringan, atau hanya bersantai di perahu sambil menikmati keindahan alami yang luar biasa.</p>
+
+    <div id="map"></div>
+  </div>
+
+  <footer>
+    &copy; 2025 Jelajah Nusantara | Danau Labuan Cermin - Surga Tersembunyi di Kalimantan
+  </footer>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([1.2522, 118.6839], 13); // Koordinat Danau Labuan Cermin yang diperbarui
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.marker([1.2522, 118.6839]).addTo(map)
+      .bindPopup("<b>Danau Labuan Cermin</b><br>Air jernih dua rasa: tawar & asin.")
+      .openPopup();
+  </script>
+
+</body>
+</html>

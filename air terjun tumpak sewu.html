@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Air Terjun Tumpak Sewu</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background-color: #00695c;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+    }
+    .content {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .content img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+    #map {
+      height: 400px;
+      margin-top: 2rem;
+      border-radius: 10px;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+      background: #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Air Terjun Tumpak Sewu</h1>
+    <p>Keajaiban Alam di Jawa Timur</p>
+  </header>
+
+  <section class="content">
+    <img src="air terjun.jpg" alt="Air Terjun Tumpak Sewu">
+    <p><strong>Air Terjun Tumpak Sewu</strong> terletak di perbatasan Kabupaten Lumajang dan Malang, Jawa Timur. Dikenal sebagai “Niagara-nya Indonesia”, air terjun ini memiliki bentuk setengah lingkaran yang unik dan ketinggian sekitar 120 meter. Pemandangan spektakulernya menjadikannya salah satu air terjun paling indah di Indonesia.</p>
+
+    <p>Pengunjung bisa menikmati keindahan dari atas tebing maupun turun ke dasar air terjun untuk merasakan sensasi langsung di tengah kabut air. Akses menuju lokasi memerlukan sedikit usaha mendaki dan menuruni jalur alam, namun semuanya sepadan dengan pemandangan yang ditawarkan.</p>
+
+    <p>Waktu terbaik untuk mengunjungi adalah di pagi hari saat cuaca cerah agar bisa melihat pelangi yang sering muncul di tengah kabut air.</p>
+
+    <div id="map"></div>
+  </section>
+
+  <footer>
+    &copy; 2025 Informasi Wisata Indonesia
+  </footer>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([-8.2297, 112.9203], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.marker([-8.2297, 112.9203])
+      .addTo(map)
+      .bindPopup('<b>Air Terjun Tumpak Sewu</b><br>Lumajang, Jawa Timur')
+      .openPopup();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hidden Gem di Indonesia</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      /* Background image bernuansa alam, contoh: hutan atau daun */
+      background: linear-gradient(rgba(34, 49, 32, 0.7), rgba(90, 119, 70, 0.7)),
+                  url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1471&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #f0f0e8; /* Warna teks terang agar kontras */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background-color: rgba(0, 123, 94, 0.85);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    .filters {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .filters button {
+      background-color: rgba(0,123,94,0.7);
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .filters button:hover {
+      background-color: rgba(0,123,94,1);
+    }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+    .card {
+      background-color: rgba(255,255,255,0.9);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      color: #333;
+    }
+    .card:hover {
+      transform: scale(1.03);
+    }
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      user-select: none;
+      pointer-events: none;
+    }
+    .card-content {
+      padding: 1rem;
+      pointer-events: none;
+    }
+    .card-content h3 {
+      margin-top: 0;
+      color: #007b5e;
+    }
+    #map {
+      height: 400px;
+      margin: 2rem;
+      border-radius: 10px;
+    }
+    footer {
+      background-color: rgba(0,123,94,0.85);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
+    }
+    .social-media-icons {
+      margin-top: 0.5rem;
+    }
+    .social-media-icons a {
+      color: white;
+      margin: 0 1rem;
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .social-media-icons a:hover {
+      color: #005f48;
+    }
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Hidden Gem di Indonesia</h1>
+    <p>Temukan surga tersembunyi di negeri kita tercinta</p>
+  </header>
+
+  <div class="filters">
+    <button onclick="filterCards('semua')">Semua</button>
+    <button onclick="filterCards('danau')">Danau</button>
+    <button onclick="filterCards('pantai')">Pantai</button>
+    <button onclick="filterCards('gunung')">Gunung</button>
+  </div>
+
+  <main class="container" id="cardContainer">
+    <div class="card" data-kategori="danau" data-index="0" tabindex="0" role="button" aria-label="Danau Labuan Cermin">
+     <a href="danau labuan cermin.html"> <img src="danau labuan cermin.jpg" alt="Danau Labuan Cermin"></a>
+      <div class="card-content">
+        <h3>Danau Labuan Cermin</h3>
+        <p>Berada di Kalimantan Timur, danau ini unik karena airnya dua lapis: tawar dan asin.</p>
+      </div>
+    </div>
+
+    <div class="card" data-kategori="pantai" data-index="1" tabindex="0" role="button" aria-label="Pulau Kanawa">
+      <img src="pulau kanawa.jpg" alt="Pulau Kanawa">
+      <div class="card-content">
+        <h3>Pulau Kanawa</h3>
+        <p>Sebuah pulau kecil di dekat Labuan Bajo, cocok untuk snorkeling dan diving dengan pemandangan bawah laut menakjubkan.</p>
+      </div>
+    </div>
+
+    <div class="card" data-kategori="pantai" data-index="2" tabindex="0" role="button" aria-label="Pulau Weh">
+      <img src="pulau weh.jpg" alt="Pulau Weh">
+      <div class="card-content">
+        <h3>Pulau Weh</h3>
+        <p>Terletak di ujung barat Indonesia, pulau ini memiliki pantai bersih dan dunia bawah laut yang masih alami.</p>
+      </div>
+    </div>
+
+    <div class="card" data-kategori="gunung" data-index="3" tabindex="0" role="button" aria-label="Air Terjun Tumpak Sewu">
+      <img src="air terjun tumpak sewe.jpg" alt="Air Terjun Tumpak Sewu">
+      <div class="card-content">
+        <h3>Air Terjun Tumpak Sewu</h3>
+        <p>Air terjun megah di perbatasan Lumajang dan Malang, dikenal sebagai Niagara-nya Indonesia.</p>
+      </div>
+    </div>
+  </main>
+
+  <div id="map"></div>
+
+  <footer>
+    &copy; 2025 Jelajah Nusantara
+    <div class="social-media-icons" aria-label="Media Sosial Developer">
+      <a href="https://github.com/kaafie" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://instagram.com/kaafie_" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="mailto:tesiq145@email.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      <a href="biodata.html">tentang developer</a>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const locations = [
+      {
+        name: "Danau Labuan Cermin",
+        coords: [1.2522, 118.6839],
+        description: "Danau unik dengan air tawar dan asin."
+      },
+      {
+        name: "Pulau Kanawa",
+        coords: [-8.5167, 119.7333],
+        description: "Snorkeling dan diving di Labuan Bajo."
+      },
+      {
+        name: "Pulau Weh",
+        coords: [5.8649, 95.3163],
+        description: "Pantai bersih dan dunia bawah laut alami."
+      },
+      {
+        name: "Air Terjun Tumpak Sewu",
+        coords: [-8.2297, 112.9203],
+        description: "Niagara-nya Indonesia di Jawa Timur."
+      }
+    ];
+
+    const map = L.map('map').setView([1.2522, 118.6839], 5);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    locations.forEach(loc => {
+      L.marker(loc.coords).addTo(map)
+        .bindPopup(`<b>${loc.name}</b><br>${loc.description}`);
+    });
+
+    function filterCards(kategori) {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        if (kategori === 'semua' || card.dataset.kategori === kategori) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+</body>
+</html>
+</content>
+</create_file>
